@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de produtos</title>
+   
+</head>
+<body>
+    
+    <h4 class="cadastroProdutosTitle">Cadastro de produtos</h4>
+
+    <div class="cadastroProdutosContainer">
+
+        <div class="cadastroProdutosBtnConatiner">
+
+            <button class="novoProdutoBtn">Novo produto</button>
+        </div>
+
+        <div class="cadastroProdutosTableContainer" name="cadastroProdutosTable">
+
+            <table class="cadastroProdutosTable">
+
+                <thead>
+                    <tr>
+                        <th class="cadastroProdutosHeader"
+                            id="cadastroProdutosHeaderId">ID</th>
+
+                        <th class="cadastroProdutosHeader"
+                            id="cadastroProdutosHeaderNome">Nome produto</th>
+
+                        <th class="cadastroProdutosHeader"
+                            id="cadastroProdutosHeaderDesc">Descrição</th>
+
+                        <th class="cadastroProdutosHeader"
+                            id="cadastroProdutosHeaderCategoria">Categoria</th>
+
+                        <th class="cadastroProdutosHeader"
+                            id="cadastroProdutosHeaderPreco">Preço Padrão</th>
+
+                        <th class="cadastroProdutosHeader"
+                            id="cadastroProdutosHeaderInfo">Info</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>
+
+                            <button class="cadastroProdutosMoreInfoBtn"
+                                    onclick="getMoreInfo(``)">
+                                Ver detalhes
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>
+
+                            <button class="cadastroProdutosMoreInfoBtn">
+                                Ver detalhes
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>
+
+                            <button class="cadastroProdutosMoreInfoBtn">
+                                Ver detalhes
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>Dado exemplo</td>
+                        <td>
+
+                            <button class="cadastroProdutosMoreInfoBtn">
+                                Ver detalhes
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+    <style>
+
+    * {
+       
+        font-family: sans-serif;
+    }
+
+    /* styles.css */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f9;
+    }
+
+    .cadastroProdutosTitle {
+
+        font-size: 25px;
+        font-weight: 500;
+        margin: 15px 0px;
+    }
+
+    .cadastroProdutosTable {
+
+        width: 95%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 18px;
+        text-align: left;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .novoProdutoBtn {
+
+        height: 40px;
+        font-size: 16px;
+        font-weight: 500;
+
+        background-color: #ccc;
+        border: 1px solid #191919;
+        color: #191919;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .cadastroProdutosTable thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .cadastroProdutosTable th,
+    .cadastroProdutosTable td {
+        padding: 12px 15px;
+    }
+
+    .cadastroProdutosTable tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .cadastroProdutosTable tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .cadastroProdutosTable tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+    .cadastroProdutosTable tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+
+    .cadastroProdutosTable tbody tr td {
+
+        border: 1px solid #191919;
+    }
+
+    .cadastroProdutosTable tbody tr td .cadastroProdutosMoreInfoBtn {
+
+        width: 95%;
+        height: 40px;
+        margin: 0 auto;
+        padding: 0px 0px 0px 0px;
+        border: 1px solid #191919;
+        background-color: #ccc;
+        text-align: center;
+        color: #191919;
+        font-size: 16px;
+    }
+    </style>
+</body>
+</html>

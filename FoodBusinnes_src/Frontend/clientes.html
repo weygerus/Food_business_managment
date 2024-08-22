@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de clientes</title>
+</head>
+<body>
+    
+    <header class="homeHeaderContainer">
+
+        <nav class="homeNav">
+
+            <ul class="homeUL" id="homeUL">
+
+                <li class="homeUlOption">Home</li>
+
+                <li class="homeUlOption dropDown" id="homeUlOptionDropDown">
+
+                    <a class="dropDownLink" id="dropDownLink" href="#">Cadastros</a>
+                    <ul class="dropDownContainer" id="dropDownContainer">
+
+                        <li><a href="clientes.html">Clientes</a></li>
+                        <li><a href="#Funcionários">Funcionários</a></li>
+                        <li><a href="#Produtos">Produtos</a></li>
+                    </ul>
+                </li>
+
+                <script>
+                    
+                    var dropDownContainer = 
+                    document.getElementById('homeUlOptionDropDown')
+
+                    var dropDownLink = document.getElementById('dropDownLink')
+
+                    dropDownContainer.addEventListener('mouseover', function() {
+                            
+                        dropDownContainer.style.width = '150px'
+                        dropDownContainer.style.height = '160px'
+                    })
+
+                    dropDownContainer.addEventListener('mouseout', function() {
+                            
+                            dropDownContainer.style.width = '90px'
+                            dropDownContainer.style.height = '20px'
+                    })
+                </script>
+
+                <li class="homeUlOption">Financeiro</li>
+
+                <li class="homeUlOption">Dashboards</li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="registroClientesMainContainer">
+
+        <div class="registroClientesFormContainer">
+
+            <input type="text" class="registroClientesInput" placeholder="username">
+            
+            <input type="text" class="registroClientesInput" placeholder="Email">
+            
+            <input type="text" class="registroClientesInput" placeholder="password">
+
+            <input type="text" class="registroClientesInput" placeholder="confirmPassword">
+
+
+        </div>
+
+    </div>
+
+    <style>
+
+    .registroClientesMainContainer {
+
+        width: 100vw;
+        background-color: #ccc;
+
+    }
+
+    </style>
+</body>
+</html>

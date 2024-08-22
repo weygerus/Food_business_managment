@@ -1,4 +1,3 @@
-
 async function register() {
   
   event.preventDefault()
@@ -8,11 +7,23 @@ async function register() {
 
   const Username = document.getElementById('username').value
 
+  const Email = document.getElementById('email').value
+
+  const Address = document.getElementById('address').value
+
+  const City = document.getElementById('city').value
+
+  const Country = document.getElementById('country').value
+
   const Password = document.getElementById('password').value
 
   const registerPostData = {
     
     username: Username,
+    email: Email,
+    address: Address,
+    city: City,
+    country: Country,
     password: Password
   }
   
@@ -145,8 +156,61 @@ async function login() {
           `home.html?message=${loginSuccessMessage}&color=green`
     }
   })
-    /*
-
-     
-    */
 }
+
+async function getCadastroProdutos() {
+
+  window.location.href = 'cadastroProdutos.html'
+}
+
+async function createShowCadastroProdutosTable() {
+  
+  const getBasicProductsInfoFetchUrl = 
+    `http://localhost:3000/api/products/getBasicProductsInfo`
+
+  const getBasicInfoResponse = await fetch(getBasicProductsInfoFetchUrl)
+
+  if(!getBasicInfoResponse.ok) {
+
+    const errorGetProductsResponse = 
+        `Houve um erro ao buscar os produtos!`
+
+    window.location.href = 
+        `cadastroProdutos.html?message=${errorGetProductsResponse}`
+  }
+  else {
+
+    const sucessGetProductsResponseObject = await getBasicInfoResponse.json()
+
+    console.log(sucessGetProductsResponseObject)
+
+    const encodedInfoProductsObject = 
+        encodeURIComponent(sucessGetProductsResponseObject)
+    
+    window.location.href = 
+        `cadastroProdutos.html?basicInfoProductsData=${encodedInfoProductsObject}`
+  }
+
+}
+
+async function getMoreInfo(productId) {
+
+  const getAllProductInfoFetchUrl = 
+    `http://localhost:3000/api/products/getAllProductInfo/${productId}`
+
+  const getMoreInfoResponse = await fetch(getAllProductInfoFetchUrl)
+
+  if(!getMoreInfoResponse.ok) {
+
+    console.log('Houve um erro ao buscar a informação do produto!')
+  }
+  else {
+
+    const getMoreInfoResponseObject = await getMoreInfoResponse.json()
+
+    window.location.href = `allInfoProductPage.html?message=${getMoreInfoResponseObject}`
+  }
+
+}
+
+await createShowCadastroProdutosTable()

@@ -159,16 +159,92 @@ async function login() {
 }
 
 async function getCadastroProdutos() {
-
+  
   window.location.href = 'cadastroProdutos.html'
+}
+
+async function getNovoProdutoForm() {
+
+  window.location.href = `novoProduto.html`
+}
+
+async function setNovoProduto() {
+
+  /* Propriedades */
+  const Nome = document.getElementById('nome').value
+
+  const Descricao = document.getElementById('descricao').value
+
+  const Categoria = document.getElementById('categoria').value
+
+  const PrecoPadrao = document.getElementById('precoPadrao').value
+
+  const PrecoPromo = document.getElementById('precoPromo').value
+
+  const Subcategoria = document.getElementById('subcategoria').value
+
+  const Fornecedor = document.getElementById('fornecedor').value
+
+  const Custo = document.getElementById('custo').value
+
+  const QuantidadeEmEstoque = document.getElementById('quantidadeEmEstoque').value
+
+  const QuantidadeEmEstoqueMinima = document.getElementById('quantidadeEmEstoqueMinima').value
+
+  const QuantidadeEmEstoqueMaxima = document.getElementById('quantidadeEmEstoqueMaxima').value
+
+  const CodigoSKU = document.getElementById('codigoSKU').value
+
+  const CodigoBarrasEAN = document.getElementById('codigoBarrasEAN').value
+
+  const DataValidade = document.getElementById('dataValidade').value
+
+  const ImagemProduto = document.getElementById('imagemProduto').value
+  /* Propriedades */
+
+  const novoProdutoPostFetchUrl = 
+      `http://localhost:3000/api/products/createProduct`
+
+  const newProductPostData = {
+
+    nome: Nome,
+    descricao: Descricao,
+    categoria: Categoria,
+    precoPadrao: PrecoPadrao,
+    precoPromo: PrecoPromo,
+    subcategoria: Subcategoria,
+    fornecedor: Fornecedor,
+    custo: Custo,
+    quantidadeEmEstoque: QuantidadeEmEstoque,
+    quantidadeEmEstoqueMinima: QuantidadeEmEstoqueMinima,
+    quantidadeEmEstoqueMaxima: QuantidadeEmEstoqueMaxima,
+    codigoSKU: CodigoSKU,
+    codigoBarrasEAN: CodigoBarrasEAN,
+    dataValidade: DataValidade,
+    imagemProduto: ImagemProduto
+  }
+
+  const fetchResponse = await fetch(novoProdutoPostFetchUrl, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newProductPostData)
+  })
+
+  if(!fetchResponse.ok) {
+
+    console.log('Não foi possível cadastrar o novo produto!')
+  }
 }
 
 async function createShowCadastroProdutosTable() {
   
   const getBasicProductsInfoFetchUrl = 
-    `http://localhost:3000/api/products/getBasicProductsInfo`
+    `http://localhost:3000/api/products/getProducts`
 
-  const getBasicInfoResponse = await fetch(getBasicProductsInfoFetchUrl)
+  const getBasicInfoResponse = 
+      await fetch(getBasicProductsInfoFetchUrl)
 
   if(!getBasicInfoResponse.ok) {
 
@@ -212,5 +288,3 @@ async function getMoreInfo(productId) {
   }
 
 }
-
-await createShowCadastroProdutosTable()

@@ -6,7 +6,7 @@ const router = express.Router()
 require('../models/produto')
 const Produto = mongoose.model('Produto')
 
-router.get('/getBasicProductsInfo', async (req, res) => {
+router.get('/getProducts', async (req, res) => {
 
     Produto.find().sort({ order: 'desc' }).lean()
     .then((produtos) => {
@@ -29,6 +29,38 @@ router.get('/getBasicProductsInfo', async (req, res) => {
 
             message: errorMessage
         })
+    })
+})
+
+router.post('/createProduct', async (req, res) => {
+
+    const productData = req.body
+
+    const newProduct = new Produto({
+        nome: productData.nome,
+        descricao: productData.descricao,
+        categoria: productData.categoria,
+        precoPadrao: productData.precoPadrao,
+        precoPromo: productData.precoPromo,
+        subcategoria: productData.subcategoria,
+        fornecedor: productData.fornecedor,
+        custo: productData.custo,
+        quantidadeEmEstoque: productData.quantidadeEmEstoque,
+        quantidadeEmEstoqueMinima: productData.quantidadeEmEstoqueMinima,
+        quantidadeEmEstoqueMaxima: productData.quantidadeEmEstoqueMaxima,
+        codigoSKU: productData.codigoSKU,
+        codigoBarrasEAN: productData.codigoBarrasEAN,
+        dataValidade: productData.dataValidade,
+        imagemProduto: productData.imagemProduto,
+        userId: productData.userId
+      })
+
+    const savedProduct = await newProduct.save()
+
+    return res.status(200).json({
+
+        message: 'Produto cadastrado com sucesso!',
+        data: savedProduct
     })
 })
 

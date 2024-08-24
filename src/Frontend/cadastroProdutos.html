@@ -14,7 +14,8 @@
 
         <div class="cadastroProdutosBtnConatiner">
 
-            <button class="novoProdutoBtn">Novo produto</button>
+            <button class="novoProdutoBtn"
+                    onclick="getNovoProdutoForm()">Novo produto</button>
         </div>
 
         <div class="cadastroProdutosTableContainer" name="cadastroProdutosTable">
@@ -39,7 +40,7 @@
                             id="cadastroProdutosHeaderPreco">Preço Padrão</th>
 
                         <th class="cadastroProdutosHeader"
-                            id="cadastroProdutosHeaderInfo">Info</th>
+                            id="cadastroProdutosHeaderInfo"></th>
                     </tr>
                 </thead>
 
@@ -121,9 +122,17 @@
 
     .cadastroProdutosTitle {
 
-        font-size: 25px;
-        font-weight: 500;
+        font-size: 35px;
+        font-weight: bold;
         margin: 15px 0px;
+    }
+
+    .cadastroProdutosHeader {
+
+        font-size: 20px;
+        font-weight: 500;
+
+        border: 1px solid #cccc;
     }
 
     .cadastroProdutosTable {
@@ -131,7 +140,7 @@
         width: 95%;
         border-collapse: collapse;
         margin: 25px 0;
-        font-size: 18px;
+        font-size: 16px;
         text-align: left;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
@@ -140,16 +149,25 @@
 
         height: 40px;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 500;  
 
         background-color: #ccc;
-        border: 1px solid #191919;
+        border: 1px solid #cccc;
         color: #191919;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
+    .novoProdutoBtn:hover {
+
+        background-color: greenyellow;
+        border: 1px solid #191919;
+        color: #191919;
+
+        transition: 0.2s ease;
+    }
+
     .cadastroProdutosTable thead tr {
-        background-color: #009879;
+        background-color: #191919;
         color: #ffffff;
         text-align: left;
     }
@@ -168,7 +186,7 @@
     }
 
     .cadastroProdutosTable tbody tr:last-of-type {
-        border-bottom: 2px solid #009879;
+        border-bottom: 2px solid #cccc;
     }
 
     .cadastroProdutosTable tbody tr.active-row {
@@ -178,20 +196,28 @@
 
     .cadastroProdutosTable tbody tr td {
 
-        border: 1px solid #191919;
+        border: 1px solid #cccc;
     }
 
     .cadastroProdutosTable tbody tr td .cadastroProdutosMoreInfoBtn {
 
         width: 95%;
-        height: 40px;
+        height: 35px;
         margin: 0 auto;
         padding: 0px 0px 0px 0px;
-        border: 1px solid #191919;
+        border: 1px solid #cccc;
         background-color: #ccc;
         text-align: center;
         color: #191919;
         font-size: 16px;
+    }
+
+    .cadastroProdutosTable tbody tr td .cadastroProdutosMoreInfoBtn:hover {
+
+        background-color: #191919;
+        color: #fff;
+
+        transition: 0.2s ease;
     }
     </style>
 </body>

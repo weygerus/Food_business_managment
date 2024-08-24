@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const router = express.Router()
 
-require('../models/productModel')
+require('../models/produto')
 const Produto = mongoose.model('Produto')
 
 router.get('/getBasicProductsInfo', async (req, res) => {

@@ -18,10 +18,10 @@ mongoose.connect('mongodb://localhost:27017/authDB').then(() => {
   console.log("Erro de conexão com o banco de dados: " + err)
 })
 
-require('./models/userModel')
+require('./models/usuario')
 const User = mongoose.model('User')
 
-require('./models/productModel')
+require('./models/produto')
 const Produto = mongoose.model('Produto')
 
 app.use(express.json())

@@ -6,7 +6,7 @@ const { verifyToken, isAdmin } = require('../middleware/authMiddleware')
 
 const router = express.Router()
 
-require('../models/userModel')
+require('../models/usuario')
 const User = mongoose.model('User')
 
 router.get('/teste', async (req, res) => {

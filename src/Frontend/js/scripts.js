@@ -111,7 +111,7 @@ async function login() {
 
     const response = await loginPostResponse.json()
 
-    console.log('payload: ', response.message)
+    console.log('payload: ', response)
 
     if(!loginPostResponse.ok) {
 
@@ -128,9 +128,9 @@ async function login() {
 
 
             background-color: #ffe0e0;
-            border: 2px solid red;
+            border: 1px solid red;
             height: 60px;
-            border-radius: 14px;
+            border-radius: 0px;
             color: red;
 
             display: flex;
@@ -148,94 +148,28 @@ async function login() {
       loginForm.innerHTML = errorCardHTML     
     }
     
-    if(response.message == 'Usuário autenticado com sucesso!') {
+    if(response.token) {
 
-      const loginSuccessMessage = `Login realizado com sucesso!`
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('message', response.message);
+      localStorage.setItem('user', JSON.stringify(response.user));
   
       window.location.href = 
-          `home.html?message=${loginSuccessMessage}&color=green`
+          `home.html`
     }
   })
 }
 
+
+
 async function getCadastroProdutos() {
   
-  window.location.href = 'cadastroProdutos.html'
+  window.location.href = 'telaProdutos.html'
 }
 
 async function getNovoProdutoForm() {
 
   window.location.href = `novoProduto.html`
-}
-
-async function setNovoProduto() {
-
-  /* Propriedades */
-  const Nome = document.getElementById('nome').value
-
-  const Descricao = document.getElementById('descricao').value
-
-  const Categoria = document.getElementById('categoria').value
-
-  const PrecoPadrao = document.getElementById('precoPadrao').value
-
-  const PrecoPromo = document.getElementById('precoPromo').value
-
-  const Subcategoria = document.getElementById('subcategoria').value
-
-  const Fornecedor = document.getElementById('fornecedor').value
-
-  const Custo = document.getElementById('custo').value
-
-  const QuantidadeEmEstoque = document.getElementById('quantidadeEmEstoque').value
-
-  const QuantidadeEmEstoqueMinima = document.getElementById('quantidadeEmEstoqueMinima').value
-
-  const QuantidadeEmEstoqueMaxima = document.getElementById('quantidadeEmEstoqueMaxima').value
-
-  const CodigoSKU = document.getElementById('codigoSKU').value
-
-  const CodigoBarrasEAN = document.getElementById('codigoBarrasEAN').value
-
-  const DataValidade = document.getElementById('dataValidade').value
-
-  const ImagemProduto = document.getElementById('imagemProduto').value
-  /* Propriedades */
-
-  const novoProdutoPostFetchUrl = 
-      `http://localhost:3000/api/products/createProduct`
-
-  const newProductPostData = {
-
-    nome: Nome,
-    descricao: Descricao,
-    categoria: Categoria,
-    precoPadrao: PrecoPadrao,
-    precoPromo: PrecoPromo,
-    subcategoria: Subcategoria,
-    fornecedor: Fornecedor,
-    custo: Custo,
-    quantidadeEmEstoque: QuantidadeEmEstoque,
-    quantidadeEmEstoqueMinima: QuantidadeEmEstoqueMinima,
-    quantidadeEmEstoqueMaxima: QuantidadeEmEstoqueMaxima,
-    codigoSKU: CodigoSKU,
-    codigoBarrasEAN: CodigoBarrasEAN,
-    dataValidade: DataValidade,
-    imagemProduto: ImagemProduto
-  }
-
-  const fetchResponse = await fetch(novoProdutoPostFetchUrl, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newProductPostData)
-  })
-
-  if(!fetchResponse.ok) {
-
-    console.log('Não foi possível cadastrar o novo produto!')
-  }
 }
 
 async function createShowCadastroProdutosTable() {

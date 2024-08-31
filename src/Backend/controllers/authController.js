@@ -32,7 +32,6 @@ exports.registro = async (req, res) => {
 
     console.log(err)
   }
-
 }
 
 exports.login = async (req, res) => {
@@ -49,6 +48,7 @@ exports.login = async (req, res) => {
   if (!user) return res.status(404).json({ message: 'Usuário não encontrado' })
 
   const isMatch = await bcrypt.compare(password, user.password)
+  
   if (!isMatch) return res.status(400).json({ message: 'Senha incorreta!' })
 
   const token = jwt.sign({ id: user._id, role: user.role }, 'secret', { expiresIn: '1h' })

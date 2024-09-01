@@ -1,5 +1,3 @@
-
-
 async function populateCategorySelectInput() {
 
     try {
@@ -38,7 +36,7 @@ async function setNovoProduto() {
   
     const Descricao = document.getElementById('descricao').value
   
-    const Categoria = document.getElementById('categoria').value
+    const Categoria = document.getElementById('categorySelect').value
   
     const PrecoPadrao = document.getElementById('precoPadrao').value
 
@@ -47,8 +45,6 @@ async function setNovoProduto() {
     const Subcategoria = document.getElementById('subcategoria').value
   
     const Fornecedor = document.getElementById('fornecedor').value
-  
-    const Custo = document.getElementById('custo').value
   
     const QuantidadeEmEstoque = document.getElementById('quantidadeEmEstoque').value
   
@@ -63,6 +59,10 @@ async function setNovoProduto() {
     const DataValidade = document.getElementById('dataValidade').value
   
     const ImagemProduto = document.getElementById('imagemProduto')
+
+    const UserObject = JSON.parse(localStorage.getItem('user'))
+    
+    const UserId = UserObject._id
     /* Propriedades */
 
     const novoProdutoPostFetchUrl = 
@@ -77,14 +77,15 @@ async function setNovoProduto() {
       precoPromo: PrecoPromo,
       subcategoria: Subcategoria,
       fornecedor: Fornecedor,
-      custo: Custo,
       quantidadeEmEstoque: QuantidadeEmEstoque,
       quantidadeEmEstoqueMinima: QuantidadeEmEstoqueMinima,
       quantidadeEmEstoqueMaxima: QuantidadeEmEstoqueMaxima,
       codigoSKU: CodigoSKU,
       codigoBarrasEAN: CodigoBarrasEAN,
       dataValidade: DataValidade,
-      imagemProduto: ImagemProduto
+      imagemProduto: ImagemProduto,
+      dataCadastro: Date.now,
+      userId: UserId
     }
   
     const fetchResponse = await fetch(novoProdutoPostFetchUrl, {
@@ -101,7 +102,7 @@ async function setNovoProduto() {
 
       const novoProdutoErrorMessage = `Não foi possível cadastrar o novo produto!`
 
-      window.location.href = `cadastroProdutos.html?message=${novoProdutoErrorMessage}`
+      window.location.href = `telaProdutos.html?message=${novoProdutoErrorMessage}`
     }
     else {
 
@@ -112,6 +113,4 @@ async function setNovoProduto() {
 }
 
 populateCategorySelectInput()
-
-showProductInfoDetail()
   

@@ -66,51 +66,9 @@ router.get('/getProductById/:id', async (req, res) => {
     }
 })
 
-router.post('/createProduct', async (req, res) => {
+router.get('/getProductsByUser/:userId', productController.getProductsByUser)
 
-    const productData = req.body
-
-    const newProduct = new Produto({
-        nome: productData.nome,
-        descricao: productData.descricao,
-        categoria: productData.categoria,
-        precoPadrao: productData.precoPadrao,
-        precoPromo: productData.precoPromo,
-        subcategoria: productData.subcategoria,
-        fornecedor: productData.fornecedor,
-        custo: productData.custo,
-        quantidadeEmEstoque: productData.quantidadeEmEstoque,
-        quantidadeEmEstoqueMinima: productData.quantidadeEmEstoqueMinima,
-        quantidadeEmEstoqueMaxima: productData.quantidadeEmEstoqueMaxima,
-        codigoSKU: productData.codigoSKU,
-        codigoBarrasEAN: productData.codigoBarrasEAN,
-        dataValidade: productData.dataValidade,
-        imagemProduto: productData.imagemProduto,
-        userId: productData.userId
-    })
-
-    if(productData.nome == null) {
-
-        const createProductErrorMessage = `Forneça um nome de usuário!`
-
-        return res.status(400).json({
-
-            message: createProductErrorMessage
-        })
-    }
-    else if(productData.categoria == null) {
-
-        const createProductErrorMessage = `Selecione um categoria`
-    }
-
-    const savedProduct = await newProduct.save()
-
-    return res.status(200).json({
-
-        message: 'Produto cadastrado com sucesso!',
-        data: savedProduct
-    })
-})
+router.post('/createProduct', productController.createProduct)
 
 router.post('/editProduct/:id', productController.updateProduct)
 

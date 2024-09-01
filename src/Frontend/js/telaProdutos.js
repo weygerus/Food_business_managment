@@ -135,8 +135,12 @@ async function populateTable() {
 
   try {
 
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    console.log('User object: ', user)
+
     const response = 
-        await fetch('http://localhost:3000/api/products/getProducts')
+        await fetch(`http://localhost:3000/api/products/getProductsByUser/${user._id}`)
 
     const responseObject = await response.json()
 

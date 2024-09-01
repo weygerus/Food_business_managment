@@ -13,6 +13,11 @@ router.post('/registro', registro, async (req, res) => {})
 
 router.post('/login', login, (req, res) => {})
 
+router.post('/logout', verifyToken, (req, res) => {
+  
+  res.status(200).json({ message: 'Logout bem-sucedido.' });
+})
+
 router.get('/admin', verifyToken, isAdmin, (req, res) => {
 
   res.json({ message: 'Welcome to the admin panel' })

@@ -169,7 +169,6 @@ async function populateTable() {
         const tdPreco = document.createElement('td')
         tdPreco.textContent = produto.precoPadrao
         tr.appendChild(tdPreco)
-
         
         const detailBtnHTML = `
         

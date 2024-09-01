@@ -160,6 +160,44 @@ async function login() {
   })
 }
 
+function signOut() {
+  
+    console.log('teste')
+
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  window.location.href = 'login.html';
+}
+
+async function logout() {
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  
+  const token = localStorage.getItem('token')
+
+  console.log(token)
+
+  await fetch('http://localhost:3000/api/auth/logout', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message === 'Logout bem-sucedido.') {
+
+      console.log(data.message)
+
+      signOut();
+    } else {
+      console.error('Erro ao fazer logout:', data.message);
+    }
+  })
+  .catch(error => console.error('Erro:', error));
+
+}
 
 
 async function getCadastroProdutos() {

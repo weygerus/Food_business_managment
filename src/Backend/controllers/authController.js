@@ -1,6 +1,7 @@
 const User = require('../models/usuario');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const secret = '12345'
 
 exports.registro = async (req, res) => {
 
@@ -51,7 +52,7 @@ exports.login = async (req, res) => {
   
   if (!isMatch) return res.status(400).json({ message: 'Senha incorreta!' })
 
-  const token = jwt.sign({ id: user._id, role: user.role }, '12345', { expiresIn: '1h' })
+  const token = jwt.sign({ id: user._id, role: user.role }, secret, { expiresIn: '1h' })
   
   return res.json({
 

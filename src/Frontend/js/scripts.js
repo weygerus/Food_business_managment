@@ -99,7 +99,7 @@ async function login() {
     username: Username,
     password: Password
   }
-  
+
   await fetch(loginFetchURL, {
     method: "POST",
     headers: {
@@ -259,4 +259,19 @@ async function getMoreInfo(productId) {
     window.location.href = `allInfoProductPage.html?message=${getMoreInfoResponseObject}`
   }
 
+}
+
+async function getTelaEstoque() {
+
+  try {
+
+    console.log('teste')
+    
+    window.location.href = `telaEstoque.html`
+
+  }
+  catch(err) {
+
+    const getTelaEstoqueErrorMessage = `Houve um erro ao buscar os produtos do estoque: ${err}`
+  }
 }

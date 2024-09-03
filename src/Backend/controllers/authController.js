@@ -52,12 +52,14 @@ exports.login = async (req, res) => {
   
   if (!isMatch) return res.status(400).json({ message: 'Senha incorreta!' })
 
-  const token = jwt.sign({ id: user._id, role: user.role }, secret, { expiresIn: '1h' })
-  
+  const acessToken = jwt.sign({ id: user._id, role: user.role }, secret, { expiresIn: '7d' })
+  const refreshToken = jwt.sign({ id: user.id }, 'refresh-secret', { expiresIn: '7d' })
+
   return res.json({
 
     message: "Usuário autenticado com sucesso!",
-    token: token,
+    accessToken: acessToken,
+    refreshToken: refreshToken,
     user: user
   })
 }

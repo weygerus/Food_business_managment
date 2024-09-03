@@ -148,14 +148,13 @@ async function login() {
       loginForm.innerHTML = errorCardHTML     
     }
     
-    if(response.token) {
+    if(response.accessToken) {
 
-      localStorage.setItem('token', response.token);
+      localStorage.setItem('token', response.accessToken);
       localStorage.setItem('message', response.message);
       localStorage.setItem('user', JSON.stringify(response.user));
   
-      window.location.href = 
-          `home.html`
+      window.location.href = `home.html`
     }
   })
 }

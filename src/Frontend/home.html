@@ -63,7 +63,6 @@
           </div>
           <div>
             <a class="navbar-brand brand-logo" href="index.html">
-              <img src="assets/images/logo.svg" alt="logo" />
             </a>
             <a class="navbar-brand brand-logo-mini" href="index.html">
               <img src="assets/images/logo-mini.svg" alt="logo" />
@@ -80,48 +79,8 @@
           </ul>
           
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown d-none d-lg-block">
-              <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-                <a class="dropdown-item py-3">
-                  <p class="mb-0 fw-medium float-start">Select category</p>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis fw-medium text-dark">Bootstrap Bundle </p>
-                    <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis fw-medium text-dark">Angular Bundle</p>
-                    <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis fw-medium text-dark">VUE Bundle</p>
-                    <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis fw-medium text-dark">React Bundle</p>
-                    <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
-                  </div>
-                </a>
-              </div>
-            </li>
+            
 
-            <!--
-            <li class="nav-item">
-              <form class="search-form" action="#">
-                <i class="icon-search"></i>
-                <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-              </form>
-            </li>
-            -->
             
             <li class="nav-item dropdown">
               <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
@@ -210,8 +169,11 @@
 
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
               <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              
                 <img class="img-xs rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image"> </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                     aria-labelledby="UserDropdown">
+
                 <div class="dropdown-header text-center">
                   <img class="img-md rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image">
                   <p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
@@ -254,7 +216,7 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Produtos</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="telaProdutos.html">Produtos</a></li>
                   <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Categorias</a></li>
                   <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Fornecedores</a></li>
                   <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Funcionários</a></li>
@@ -263,9 +225,17 @@
               </div>
             </li>
 
+ 
+
             <!-- Financeiro -->
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <a 
+                class="nav-link" 
+                onclick="displayFinancesScreen()" 
+                data-bs-toggle="collapse" 
+                href="#form-elements" 
+                aria-expanded="false" 
+                aria-controls="form-elements">
                 <i class="menu-icon mdi mdi-card-text-outline"></i>
                 <span class="menu-title">Financeiro</span>
                 <i class="menu-arrow"></i>
@@ -277,6 +247,57 @@
                   <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Fluxo de Caixa</a></li>
                   <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Relatórios financeiros</a></li>
                   <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Emissão de notas</a></li>
+
+                </ul>
+              </div>
+            </li>
+
+            <script>
+
+              async function displayFinancesScreen() {
+
+                const financesHtmlArea = document.getElementById('financesScreen')
+
+                const financesGeneralDashboardCardHtml = `
+
+                <div class="col-lg-8 d-flex flex-column">
+                  <div class="row flex-grow">
+                    <div class="card card-rounded">
+                      <div class="card-body">
+                        <div class="d-sm-flex justify-content-between align-items-start">
+                          <div>
+                            <h4 class="card-title card-title-dash">Balanço mensal</h4>
+                          </div>
+                          <div id="performanceLine-legend">
+
+                          </div>
+                        </div>
+                        <div class="chartjs-wrapper mt-4">
+                          <canvas id="performanceLine" width=""></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                `
+
+                financesHtmlArea.innerHTML = financesGeneralDashboardCardHtml
+              }
+            </script>
+
+            <!-- Gestão de cardápio -->
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="collapse" href="#gestao-cardapio" aria-expanded="false" aria-controls="form-elements">
+                <i class="menu-icon mdi mdi-card-text-outline"></i>
+                <span class="menu-title">Cardápio</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="gestao-cardapio">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Criação e atualização</a></li>
+                  <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Gestão de preços e promoções</a></li>
+                  <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Controle de ingredientes e receitas</a></li>
+                  <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Integração com o sistema de pedidos</a></li>
 
                 </ul>
               </div>
@@ -297,9 +318,6 @@
                   <li class="nav-item"> <a class="nav-link" onclick="getTelaEstoque()">Gestão de armazenamento</a></li>
                   <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Inventário</a></li>
                   <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Alertas de resposição</a></li>
-
-
-
                 </ul>
               </div>
             </li>
@@ -307,12 +325,15 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
                 <i class="menu-icon mdi mdi-table"></i>
-                <span class="menu-title">Tables</span>
+                <span class="menu-title">Vendas</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Processamento de pagamentos</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Emissão de recibos e notas fiscais</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Gestão de mesas e pedidos</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Integração com programas de fidelidade</a></li>
                 </ul>
               </div>
             </li>
@@ -320,12 +341,15 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
                 <i class="menu-icon mdi mdi-layers-outline"></i>
-                <span class="menu-title">Icons</span>
+                <span class="menu-title">Clientes</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Font Awesome</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Registro de informações de clientes</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Histórico de pedidos</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Programas de fidelidade e promoções</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Feedback e avaliações de clientes</a></li>
                 </ul>
               </div>
             </li>
@@ -333,7 +357,7 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">User Pages</span>
+                <span class="menu-title">Análises</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="auth">
@@ -348,11 +372,22 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="docs/documentation.html">
-                <i class="menu-icon mdi mdi-file-document"></i>
-                <span class="menu-title">Documentation</span>
+              <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <span class="menu-title">Usuário</span>
+                <i class="menu-arrow"></i>
               </a>
+              <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+                </ul>
+              </div>
             </li>
+
 
           </ul>
         </nav>
@@ -365,27 +400,20 @@
                   <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                     <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                        <a class="nav-link active ps-0" id="home-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Geral</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#audiences" role="tab" aria-selected="false">Audiences</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#demographics" role="tab" aria-selected="false">Demographics</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link border-0" id="more-tab" data-bs-toggle="tab" href="#more" role="tab" aria-selected="false">More</a>
+                        <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#audiences" role="tab" aria-selected="false">Financeiro</a>
                       </li>
                     </ul>
                     <div>
                       <div class="btn-wrapper">
                         <a href="#" class="btn btn-otline-dark align-items-center"><i class="icon-share"></i> Share</a>
-                        <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
                         <a href="#" class="btn btn-primary text-white me-0"><i class="icon-download"></i> Export</a>
                       </div>
                     </div>
                   </div>
-                  <div class="tab-content tab-content-basic">
+                  <div class="tab-content tab-content-basic" id="financesScreen">
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview">
                       <div class="row">
                         <div class="col-sm-12">
@@ -393,36 +421,35 @@
                             <div>
                               <p class="statistics-title">Bounce Rate</p>
                               <h3 class="rate-percentage">32.53%</h3>
-                              <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
                             </div>
                             <div>
                               <p class="statistics-title">Page Views</p>
                               <h3 class="rate-percentage">7,682</h3>
-                              <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
                             </div>
                             <div>
                               <p class="statistics-title">New Sessions</p>
                               <h3 class="rate-percentage">68.8</h3>
-                              <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
                             </div>
                             <div class="d-none d-md-block">
                               <p class="statistics-title">Avg. Time on Site</p>
                               <h3 class="rate-percentage">2m:35s</h3>
-                              <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
                             </div>
                             <div class="d-none d-md-block">
                               <p class="statistics-title">New Sessions</p>
                               <h3 class="rate-percentage">68.8</h3>
-                              <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
                             </div>
                             <div class="d-none d-md-block">
                               <p class="statistics-title">Avg. Time on Site</p>
                               <h3 class="rate-percentage">2m:35s</h3>
-                              <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
                             </div>
                           </div>
                         </div>
                       </div>
+
+      
+
+
+
                       <div class="row">
                         <div class="col-lg-8 d-flex flex-column">
                           <div class="row flex-grow">
@@ -431,10 +458,11 @@
                                 <div class="card-body">
                                   <div class="d-sm-flex justify-content-between align-items-start">
                                     <div>
-                                      <h4 class="card-title card-title-dash">Performance Line Chart</h4>
-                                      <h5 class="card-subtitle card-subtitle-dash">Lorem Ipsum is simply dummy text of the printing</h5>
+                                      <h4 class="card-title card-title-dash">Balanço mensal</h4>
                                     </div>
-                                    <div id="performanceLine-legend"></div>
+                                    <div id="performanceLine-legend">
+
+                                    </div>
                                   </div>
                                   <div class="chartjs-wrapper mt-4">
                                     <canvas id="performanceLine" width=""></canvas>
@@ -464,36 +492,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-6 col-lg-12 grid-margin stretch-card">
-                              <div class="card card-rounded">
-                                <div class="card-body">
-                                  <div class="row">
-                                    <div class="col-lg-6">
-                                      <div class="d-flex justify-content-between align-items-center mb-2 mb-sm-0">
-                                        <div class="circle-progress-width">
-                                          <div id="totalVisitors" class="progressbar-js-circle pr-2"></div>
-                                        </div>
-                                        <div>
-                                          <p class="text-small mb-2">Total Visitors</p>
-                                          <h4 class="mb-0 fw-bold">26.80%</h4>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                      <div class="d-flex justify-content-between align-items-center">
-                                        <div class="circle-progress-width">
-                                          <div id="visitperday" class="progressbar-js-circle pr-2"></div>
-                                        </div>
-                                        <div>
-                                          <p class="text-small mb-2">Visits per day</p>
-                                          <h4 class="mb-0 fw-bold">9065</h4>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+
                           </div>
                         </div>
                       </div>
@@ -510,7 +509,7 @@
                                     </div>
                                     <div>
                                       <div class="dropdown">
-                                        <button class="btn btn-light dropdown-toggle toggle-dark btn-lg mb-0 me-0" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> This month </button>
+                                        <button class="btn btn-light dropdown-toggle toggle-dark btn-lg mb-0 me-0" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                           <h6 class="dropdown-header">Settings</h6>
                                           <a class="dropdown-item" href="#">Action</a>
@@ -590,7 +589,7 @@
                                           </td>
                                           <td>
                                             <div class="d-flex ">
-                                              <img src="assets/images/faces/face1.jpg" alt="">
+                                              <img src="./images/perfil.gif" alt="">
                                               <div>
                                                 <h6>Brandon Washington</h6>
                                                 <p>Head admin</p>
@@ -1121,6 +1120,8 @@
         }
 
         async function verify() {
+
+          console.log(localStorage.getItem('token'))
 
           const isAuth = await isAuthenticated()
           

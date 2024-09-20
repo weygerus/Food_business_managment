@@ -1,289 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<!-- plugins:css -->
+<link rel="stylesheet" href="assets/vendors/feather/feather.css">
+<link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="assets/vendors/ti-icons/css/themify-icons.css">
+<link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/vendors/typicons/typicons.css">
+<link rel="stylesheet" href="assets/vendors/simple-line-icons/css/simple-line-icons.css">
+<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<link rel="stylesheet" href="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+<link rel="stylesheet" type="text/css" href="assets/js/select.dataTables.min.css">
+
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+
+    .card-title-custom {
+
+        margin-top: 15px;
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
+
+    .custom-card {
+
+        height: 75vh;
+    }
+
+    .custom-form-control {
+        height: 45px; 
+        padding: .300rem .75rem;
+        font-size: 0.875rem; 
+    }
+
+    .novoProdutoInput {
+
+        appearance: none;
+        -webkit-appearance: none; 
+        -moz-appearance: none;
+        
+        width: 173px;
+        height: 40px;
+        font-size: 0.875rem; 
+        
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        color: #191919;
+    }
+
+     .categorySelectOption {
+
+        background-color: #fff; 
+        color: #333; 
+    }
+
+     .novoProdutoInput:focus {
+
+        background-color: #fff;
+        color: #333;
+    }
+
+    option:checked {
+
+        background-color: #fff;
+        color: #333;
+    }
+
+    .custom-form-select {
+        width: 100px;
+        height: 40px; 
+        padding: .300rem .75rem; 
+        font-size: 0.875rem; 
+    } 
+
+    .show-desc-btn {
+
+        border: none;
+    }
+
+    .btn-custom-container  {
+
+        margin-bottom: 15px;
+        margin-right: -80px;
+        margin-top: 40px;
+    }
+</style>
+
 </head>
-<body class="bodyContainer">
 
-    <h4 class="novoProdutoTitle">Novo Produto</h4>
-    
-    <div class="novoProdutoFormContainerHeader"></div>
+<body>
 
-    <div class="novoProdutoFormContainer">
-
-            <div class="novoProdutoInputContainer">
+    <div class="content-wrapper">
         
-                <label class="novoProdutoInputLabel" for="nome">Nome:</label>
-                <input type="text" 
-                       class="novoProdutoInput" 
-                       id="nome" 
-                       name="newProductPostData[nome]" 
-                       required>
-            </div>
-
-            <div class="novoProdutoInputContainer">
-    
-                <label class="novoProdutoInputLabel" for="descricao">Descrição:</label>
-                <input type="text" 
-                       class="novoProdutoInput" 
-                       id="descricao" 
-                       name="newProductPostData[descricao]" 
-                       required>
-            </div>
-
-            <div class="novoProdutoInputContainer">
-       
-                <label class="novoProdutoInputLabel" for="categorySelect">Categoria:</label>
-                <select class="novoProdutoInput" id="categorySelect"></select>
-            </div>
-
-            <div class="novoProdutoInputContainer">
-        
-                <label class="novoProdutoInputLabel" for="precoPadrao">Preço Padrão:</label>
-                <input type="number" 
-                       class="novoProdutoInput" 
-                       id="precoPadrao" 
-                       name="newProductPostData[precoPadrao]" 
-                       required>
-            </div>
-
-            <div class="novoProdutoInputContainer">
-
-                <label class="novoProdutoInputLabel" for="precoPromo">Preço Promocional:</label>
-                <input type="number" 
-                       class="novoProdutoInput" 
-                       id="precoPromo" 
-                       name="newProductPostData[precoPromo]" 
-                       required>    
-            </div>
-
-            <div class="novoProdutoInputContainer">
-                
-                <label class="novoProdutoInputLabel" for="subcategoria">Subcategoria:</label>
-                <input type="text" 
-                       class="novoProdutoInput" 
-                       id="subcategoria" 
-                       name="newProductPostData[subcategoria]" 
-                       required>                
-            </div>
-
-            <div class="novoProdutoInputContainer">
-                
-                <label class="novoProdutoInputLabel" for="fornecedor">Fornecedor:</label>
-                <input type="text" 
-                       class="novoProdutoInput" 
-                       id="fornecedor" 
-                       name="newProductPostData[fornecedor]" 
-                       required>
-            </div>
-
-            <div class="novoProdutoInputContainer">
-    
-                <label class="novoProdutoInputLabel" for="quantidadeEmEstoque">Quantidade em Estoque:</label>
-                <input type="number" 
-                       class="novoProdutoInput" 
-                       id="quantidadeEmEstoque" 
-                       name="newProductPostData[quantidadeEmEstoque]" 
-                       required>    
-            </div>
-
-            <div class="novoProdutoInputContainer">
-                
-                <label class="novoProdutoInputLabel" for="quantidadeEmEstoqueMinima">Quant. Estoque Mínima:</label>
-                <input type="number" 
-                       class="novoProdutoInput" 
-                       id="quantidadeEmEstoqueMinima"
-                       name="newProductPostData[quantidadeEmEstoqueMinima]" 
-                       required>
-            </div>
-
-            <div class="novoProdutoInputContainer">
-                
-                <label class="novoProdutoInputLabel" for="quantidadeEmEstoqueMaxima">Quant. Estoque Máxima:</label>
-                <input type="number" 
-                       class="novoProdutoInput" 
-                       id="quantidadeEmEstoqueMaxima" 
-                       name="newProductPostData[quantidadeEmEstoqueMaxima]" 
-                       required>
-            </div>
-
-            <div class="novoProdutoInputContainer">
+        <div class="row">
             
-                <label class="novoProdutoInputLabel" for="codigoSKU">Código SKU:</label>
-                <input type="text" 
-                       class="novoProdutoInput" 
-                       id="codigoSKU" 
-                       name="newProductPostData[codigoSKU]" 
-                       required>
-            </div>
+            <h4 class="card-title card-title-custom">Novo Produto</h4>
 
-            <div class="novoProdutoInputContainer">
+            <div class="card custom-card">
                 
-                <label class="novoProdutoInputLabel" for="codigoBarrasEAN">Código de Barras EAN:</label>
-                <input type="text" 
-                       class="novoProdutoInput" 
-                       id="codigoBarrasEAN" 
-                       name="newProductPostData[codigoBarrasEAN]" 
-                       required>
-            </div>
+                <div class="card-body">
 
-            <div class="novoProdutoInputContainer">
+                    <form class="forms-sample" autocomplete="on">
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" class="form-control custom-form-control custom-form-control custom-form-control" autocomplete="on" id="descricao"
+                                        name="newProductPostData[nome]" autocomplete="nome" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+
+                                    <label for="precoPadrao">Preço Padrão:</label>
+                                    <input type="number" class="form-control custom-form-control custom-form-control custom-form-control" autocomplete="on" id="precoPadrao"
+                                        name="newProductPostData[precoPadrao]" autocomplete="precoPadrao" required>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3">
+                                    
+                                <div class="form-group">
+                                    
+                                    <label for="precoPromo">Preço Promocional:</label>
+                                    <input type="number" class="form-control custom-form-control" autocomplete="precoPromo" id="precoPromo" autocomplete="-level"
+                                        name="newProductPostData[precoPromo]" required>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="categorySelect">Categoria:</label>
+                                    <select class="novoProdutoInput" id="categorySelect"></select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="fornecedor">Fornecedor:</label>
+                                    <input type="text" 
+                                           class="form-control custom-form-control" 
+                                           id="fornecedor" 
+                                           autocomplete="newProductPostData[fornecedor]" 
+                                           name="newProductPostData[fornecedor]" 
+                                           required>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+
+                                    <label for="">Descrição:</label>
+                                    
+                                    <div class="input-group input-group-custom">
+                                        
+                                        <input class="form-control custom-form-control"
+                                        id="exampleTextarea1" 
+                                        autocomplete="on"
+                                                  rows="1"
+                                                  >
+                                                </input>
+    
+                                        <span class="input-group-text">
+                                            <button class="show-desc-btn" onclick="displayDescricaoTextarea()">
+                                                
+                                                <img src=".\assets\images\arrow-down-dark.svg" width="15" alt="Arrow-down">
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="subcategoria">Subcategoria:</label>
+                                    <input type="text" class="form-control custom-form-control" autocomplete="on" id="subcategoria" autocomplete="-nome-level"
+                                    name="newProductPostData[subcategoria]" required>
+                                </div>
+                            </div> 
+                            
+                            <div class="col-md-3">
+                            
+                                <div class="form-group">
+                                <label>Imagem do produto:</label>
+                                <input type="file" name="img[]" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" 
+                                           class="form-control custom-form-control file-upload-info" 
+                                           autocomplete="-level" 
+                                           placeholder="Upload Image">
+                                           
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
+
+                                <input type="file" 
+                                       id="imagem" 
+                                       name="imagem" 
+                                       accept="image/*" 
+                                       required><br><br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="quantidadeEmEstoque">Quantidade em Estoque:</label>
+                                    <input type="number" class="form-control custom-form-control" autocomplete="on" id="quantidadeEmEstoque" autocomplete="quantidadeEmEstoque-level"
+                                        name="newProductPostData[quantidadeEmEstoque]" required>
+                                </div>
+                            </div>    
+                                
+                            <div class="col-md-3">
+                                    
+                                <div class="form-group">
+                                        
+                                    <label for="quantidadeEmEstoqueMinima">Quant. Estoque Mínima:</label>
+                                    <input type="number" class="form-control custom-form-control" autocomplete="on" id="quantidadeEmEstoqueMinima" autocomplete="quantidadeEmEstoqueMinima-level"
+                                    name="newProductPostData[quantidadeEmEstoqueMinima]" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="quantidadeEmEstoqueMaxima">Quant. Estoque Máxima:</label>
+                                    <input type="number" class="form-control custom-form-control" autocomplete="on" id="quantidadeEmEstoqueMaxima" autocomplete="quantidadeEmEstoqueMaxima-level"
+                                    name="newProductPostData[quantidadeEmEstoqueMaxima]" required>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="codigoBarrasEAN">Código de Barras EAN:</label>
+                                    <input type="text" class="form-control custom-form-control" autocomplete="on" id="codigoBarrasEAN" autocomplete="codigoBarrasEAN-level"
+                                    name="newProductPostData[codigoBarrasEAN]" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-between">
+    
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+
+                                    <label for="dataValidade">Data de Validade:</label>
+                                    <input type="date" class="form-control custom-form-control" id="dataValidade" autocomplete="dataValidade-level"
+                                    name="newProductPostData[dataValidade]" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 align-items-end btn-custom-container">
+                                    
+                                <button class="btn btn-primary me-2" onclick="setNovoProduto()">Cadastrar</button>
+                                <button class="btn btn-light" onclick="cancelNovoProduto()">Cancel</button>
+                            </div>
+
+                        </div>
+
+                        <style>
+
+
+
+
+
+                        </style>
+                    </form>
                 
-                <label class="novoProdutoInputLabel" for="dataValidade">Data de Validade:</label>
-                <input type="date" 
-                       class="novoProdutoInput" 
-                       id="dataValidade" 
-                       name="newProductPostData[dataValidade]" 
-                       required>
+                </div>
             </div>
+        </div>
+</div>
 
-            <div class="novoProdutoInputContainer">
-                
-                <label class="novoProdutoInputLabel" for="imagemProduto">Imagem do Produto:</label>  
-                <button class="novoProdutoUploadImage">
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+<script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="assets/vendors/chart.js/chart.umd.js"></script>
+<script src="assets/vendors/progressbar.js/progressbar.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="assets/js/off-canvas.js"></script>
+<script src="assets/js/template.js"></script>
+<script src="assets/js/settings.js"></script>
+<script src="assets/js/hoverable-collapse.js"></script>
+<script src="assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="assets/js/dashboard.js"></script>
+<!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
+<!-- End custom js for this page-->
 
-                    <i class="fa-solid fa-upload"></i>
-                </button>
-            </div>
+<script src="js/scripts.js"></script>
+<script src="js/auth.js"></script>
 
-            <button class="novoProdutoConfirmBtn" onclick="setNovoProduto()">Cadastrar Produto</button>
-    </div>
-
-    <style>
-
-        * {
-
-            font-family: sans-serif;
-        }
-
-        .novoProdutoTitle {
-
-            font-size: 35px;
-            color: #191919;
-
-            margin: 46px 0px 10px 25%;
-        }
-
-        .novoProdutoFormContainerHeader {
-
-            width: 50%;
-            height: 20px;
-            padding: 15px 15px;
-
-            border-radius: 15px 15px 0px 0px;
-
-            margin: 0px auto;
-
-            background-color: #191919;
-
-            z-index: 99999;
-        }
-
-        .novoProdutoFormContainer {
-        
-            width: 50%;
-            height: 45vh;
-            margin: 0px auto;
-            padding: 15px 15px;
-
-            padding-top: 25px;
-
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-
-            justify-content: space-around;
-            align-items: space-around;
-
-            background-color: #fff;
-            color: #191919;
-            border: 1px solid #ccc;
-            border-radius: 0px 0px 15px 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.20);
-        }
-
-        .novoProdutoInput {
-
-            width: 160px;
-            height: 30px;
-
-            margin-bottom: 10px;
-
-            background-color: #fff;
-            color: #191919;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .novoProdutoInput:focus {
-
-            border-bottom: 1px solid greenyellow;
-            transition: 0.2s ease;
-        }
-
-        .novoProdutoInputLabel {
-
-            font-size: 14px;
-            font-weight: 500;
-            color: #191919;
-        }
-        
-        .novoProdutoInputContainer {
-
-            display: flex;
-            flex-direction: column;
-        }
-
-        .novoProdutoUploadImage {
-
-            width: 30px;
-            height: 30px;
-
-            border: 1px solid #ccc;
-            border-radius: 10px;
-
-            background-color: #191919;
-            color: #fff;
-        }
-
-        .novoProdutoUploadImage:hover {
-
-            background-color: greenyellow;
-            color: #191919;
-
-            border: 1px solid #191919;
-            transition: 0.2s ease;
-        }
-
-        .novoProdutoConfirmBtn {
-
-            width: 180px;
-            height: 40px;
-
-            background-color: #191919;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            color: #ccc;
-
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .novoProdutoConfirmBtn:hover {
-
-            background-color: greenyellow;
-            border: 1px solid #191919;
-            color: #191919;
-
-            transition: 0.2s ease;
-        }
-
-    </style>
-
-    <script src="js/novoProduto.js"></script>
+<script src="js/novoProduto.js"></script>
 </body>
+
 </html>

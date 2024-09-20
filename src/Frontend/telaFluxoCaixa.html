@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container-responsive">
+
+        <div class="table-responsive">
+
+            <table action="" class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th class="CadastradoMovimentacoesHead"
+                            id="CadastradoMovimentacoesId">Id:</th>
+
+                        <th  class="CadastradoMovimentacoesHead"
+                             id="CadastradoMovimentacoesTipo">Tipo da movimentação:</th>
+
+                        <th  class="CadastradoMovimentacoesHead"
+                             id="CadastradoMovimentacoesData">Data:</th>
+
+                        <th  class="CadastradoMovimentacoesHead"
+                             id="CadastradoMovimentacoesDesc">Descrição:</th>
+
+                        <th class="CadastradoMovimentacoesHead"
+                             id="CadastradoMovimentacoesValor">Valor:</th>
+
+                        <th class="CadastradoMovimentacoesHead"
+                            id="CadastradoMovimentacoesCategoria">Categoria</th>
+
+                    </tr>
+                </thead>
+
+                <tbody id="bodyTable">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        async function fetchMovimentacoes() {
+
+            const getMovimentacoesFetchUrl = `http://localhost:3000/api/financeiro/getMovimentacoes`
+
+            const response = await fetch(getMovimentacoesFetchUrl)
+
+            if(!response.ok) {
+
+                const errorMessage = encodeURIComponent(response.errorMessage)
+
+                window.location.href = `home.html?${errorMessage}`
+
+            }
+            else {
+
+                const responseObject = await response.json()
+
+                return responseObject
+            }
+        }
+    </script>
+    
+</body>
+</html>

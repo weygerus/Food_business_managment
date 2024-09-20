@@ -1,75 +1,86 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const productController = require('../controllers/productController')
-
-const router = express.Router()
 
 require('../models/produto')
 const Produto = mongoose.model('Produto')
 
-router.get('/getProducts', async (req, res) => {
+require('../models/usuario')
+const User = mongoose.model('User')
 
-    Produto.find().sort({ order: 'desc' }).lean()
-    .then((produtos) => {
+const { getProductsByUserId, getProductById, createProduct }
+         = require('../controllers/productController')
+         
+const { verifyToken, isAdmin } = 
+require('../middleware/authMiddleware')
 
-        const sucessMessage = `Produtos encontrados com sucesso!`
+const router = express.Router()
 
-        console.log('Teste produtos: ', produtos)
+router.get('/getProductsByUserId/:userId', getProductsByUserId)
 
-        return res.status(200).json({
+router.post('/getProductById', getProductById)
 
-            message: sucessMessage,
-            data: produtos
-        })
-    })
-    .catch((err) => {
+router.post('/createProduct', async (req, res) => {
 
-        const errorMessage = `Houve um erro ao buscar os produtos: ${err}`
+    
+    console.log('Teste metodo')
 
-        return res.status(404).json({
-
-            message: errorMessage
-        })
-    })
-})
-
-router.get('/getProductById/:id', async (req, res) => {
-
-    try {
-
-        const productId = req.params.id
-
-        Produto.findOne({ _id: productId })
-        .then((produto) => {
-
-            const successGetProductMessage = `Produto encontrado com sucesso!`
-
-            return res.status(200).json({
-
-                message: successGetProductMessage,
-                data: produto
-            })
-        })
-        .catch((err) => {
-
-            const errorGetProductMessage = 
-                `Não foi possivel encontrar esse produto! Erro: ${err}`
-
-            return res.status(400).json({
-
-                message: errorGetProductMessage
-            })
+    const product = req.body
+  
+    if(product.nome == null) {
+  
+        const createProductErrorMessage = `Forneça um nome de usuário!`
+  
+        return res.status(400).json({
+  
+            message: createProductErrorMessage
         })
     }
-    catch(err) {
+    else if(product.categoria == null) {
+  
+        const createProductErrorMessage = `Selecione um categoria`
+  
+        return res.status(400).json({
+  
+          message: createProductErrorMessage
+        })
+      }
+      
+    if(product.categoria == null || product.categoria == undefined) {
 
+
+      return res.status(400).json({
+
+        message: `Selecione uma categoria!`
+      })
     }
+
+    const newProductData = new Produto({
+
+      nome: product.nome,
+      descricao: product.descricao,
+      categoria: "teste",
+      precoPadrao: product.precoPadrao,
+      precoPromo: product.precoPromo,
+      subcategoria: product.subcategoria,
+      fornecedor: product.fornecedor,
+      quantidadeEmEstoque: product.quantidadeEmEstoque,
+      quantidadeEmEstoqueMinima: product.quantidadeEmEstoqueMinima,
+      quantidadeEmEstoqueMaxima: product.quantidadeEmEstoqueMaxima,
+      codigoBarrasEAN: product.codigoBarrasEAN,
+      dataValidade: product.dataValidade,
+      imagemProduto: product.imagemProduto,
+      userId: product.userId
+    })
+
+
+    const savedProduct = await newProductData.save()
+  
+    return res.status(200).json({
+  
+        message: 'Produto cadastrado com sucesso!',
+        data: savedProduct
+    })
+
 })
-
-router.get('/getProductsByUser/:userId', productController.getProductsByUser)
-
-router.post('/createProduct', productController.createProduct)
-
-router.post('/editProduct/:id', productController.updateProduct)
 
 module.exports = router

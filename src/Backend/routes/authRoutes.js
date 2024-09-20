@@ -4,10 +4,10 @@ const mongoose = require('mongoose')
 const { registro, login } = require('../controllers/authController')
 const { verifyToken, isAdmin } = require('../middleware/authMiddleware')
 
-const router = express.Router()
-
 require('../models/usuario')
 const User = mongoose.model('User')
+
+const router = express.Router()
 
 router.post('/registro', registro, async (req, res) => {})
 

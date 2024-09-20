@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
 
   email: { type: String},
 
-  address: { type: String},
+  address: { type: String },
 
   city: { type: String },
 
@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String },
 
   confirmPassword: { type: String },
+
+  userImage: { type: String },
 
   role: { type: Number, default: 1 },
 

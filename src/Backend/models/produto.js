@@ -2,33 +2,37 @@ const mongoose = require('mongoose')
 
 const produtoSchema = new mongoose.Schema({
 
-  nome: { type: String, required: true },
+  nome: { type: String},
 
-  descricao: { type: String, required: true },
+  descricao: { type: String},
 
-  categoria: { type: String, required: true },
+  categoria: { type: String, require: false},
 
-  precoPadrao: { type: String, required: true },
+  precoPadrao: { type: String},
 
   precoPromo: { type: String, required: false },
 
   subcategoria: { type: String, required: false },
 
-  fornecedor: { type: String, required: true },
+  fornecedor: { type: String},
   
-  quantidadeEmEstoque: { type: String, required: true },
+  quantidadeEmEstoque: { type: String},
 
-  quantidadeEmEstoqueMinima: { type: String, required: true, default: 1 },
+  quantidadeEmEstoqueMinima: { type: String, default: 1 },
 
-  codigoBarrasEAN: { type: String, required: true },
+  quantidadeEmEstoqueMaxima: { Type: String },
 
-  dataValidade: { type: Date, required: true },
+  codigoBarrasEAN: { type: String},
 
-  imagemProduto: { type: String, required: false },
+  codigoBarrasSKU: { type: String, required: false},
+
+  dataValidade: { type: Date},
+
+  imagemProduto: { type: String, require: false},
 
   dataCadastro: { type: Date, default: Date.now },
   
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 })
 
 module.exports = mongoose.model('Produto', produtoSchema)

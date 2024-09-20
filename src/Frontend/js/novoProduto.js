@@ -1,30 +1,60 @@
 async function populateCategorySelectInput() {
 
     try {
+        
+        const user = JSON.parse(localStorage.getItem('user'))
+        
+        const token = localStorage.getItem('token')
 
-        const response = 
-            await fetch('http://localhost:3000/api/categories/getCategorias')
+        console.log('Teste chamada linha 9: ', user._id)
 
-        const responseObject = await response.json()
+        const url = `http://localhost:3000/api/categories/getCategoriesByUser/${user._id}`
+      
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+        
+        if(!response.ok) {
 
-        const data = responseObject.data
+          const errorMessage = `Houve um erro ao buscar as categorias!`
 
-        const select = document.getElementById('categorySelect')
-        select.className = 'novoProdutoInput'
+          console.log(response)
 
-        data.forEach(item => {
+          window.location.href = `telaProdutos.html?message=${errorMessage}`
+        }
+        else {
+
+          const responseObject =  await response.json()
+          
+          const data = responseObject.data
+  
+          console.log('Teste data: ', data)
+          
+          const select = document.getElementById('categorySelect')
+          select.className = 'novoProdutoInput'
+          
+          data.forEach(item => {
 
             const option = document.createElement('option')
+            option.className = "categorySelectOption"
             option.textContent = item.nome
-
+            
             // Adicionando o option ao select
             select.appendChild(option)
-        })
+          })
+        }
+    } catch(error) {
 
-    } catch (error) {
-
-        console.error('Erro ao buscar dados da API:', error)
+      console.error('Erro ao buscar dados da API:', error)
     }
+}
+
+ function displayNovoProdutoForm() {
+
+   populateCategorySelectInput()
 }
 
 async function setNovoProduto() {
@@ -36,7 +66,7 @@ async function setNovoProduto() {
   
     const Descricao = document.getElementById('descricao').value
   
-    const Categoria = document.getElementById('categorySelect').value
+    const Categoria = document.getElementById('categorySelect')
   
     const PrecoPadrao = document.getElementById('precoPadrao').value
 
@@ -61,13 +91,15 @@ async function setNovoProduto() {
     const ImagemProduto = document.getElementById('imagemProduto')
 
     const UserObject = JSON.parse(localStorage.getItem('user'))
+
+    console.log('Teste, linha 95: ', UserObject)
     
     const UserId = UserObject._id
     /* Propriedades */
-
+    
     const novoProdutoPostFetchUrl = 
-        `http://localhost:3000/api/products/createProduct`
-  
+    `http://localhost:3000/api/products/createProduct`
+    
     const newProductPostData = {
   
       nome: Nome,
@@ -87,30 +119,37 @@ async function setNovoProduto() {
       dataCadastro: Date.now,
       userId: UserId
     }
+
+    const token = localStorage.getItem('token')
   
     const fetchResponse = await fetch(novoProdutoPostFetchUrl, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(newProductPostData)
     })
-  
-    if(!fetchResponse.ok) {
-  
-      console.log('Não foi possível cadastrar o novo produto!')
 
-      const novoProdutoErrorMessage = `Não foi possível cadastrar o novo produto!`
+    console.log('Teste response: ', fetchResponse)
 
-      window.location.href = `telaProdutos.html?message=${novoProdutoErrorMessage}`
+    if(!fetchResponse.ok || fetchResponse.data == undefined) {
+
+      const errorMessage = fetchResponse.message
+
+      //window.location.href = `novoProduto.html?message=${errorMessage}`
     }
     else {
 
       const novoProdutoResponseObject = await fetchResponse.json()
 
+      const user = JSON.parse(localStorage.getItem('user'))
+
+      console.log('Teste user:', user)
+
       console.log('Teste objeto da response: ', novoProdutoResponseObject)
     }
 }
 
-populateCategorySelectInput()
+  displayNovoProdutoForm()
   

@@ -7,23 +7,11 @@ async function register() {
 
   const Username = document.getElementById('username').value
 
-  const Email = document.getElementById('email').value
-
-  const Address = document.getElementById('address').value
-
-  const City = document.getElementById('city').value
-
-  const Country = document.getElementById('country').value
-
   const Password = document.getElementById('password').value
 
   const registerPostData = {
     
     username: Username,
-    email: Email,
-    address: Address,
-    city: City,
-    country: Country,
     password: Password
   }
   
@@ -111,6 +99,8 @@ async function login() {
 
     const response = await loginPostResponse.json()
 
+    console.log('Teste response user: ', response)
+
     console.log('payload: ', response)
 
     if(!loginPostResponse.ok) {
@@ -150,10 +140,14 @@ async function login() {
     
     if(response.accessToken) {
 
+      console.log(response)
+
       localStorage.setItem('token', response.accessToken);
       localStorage.setItem('message', response.message);
       localStorage.setItem('user', JSON.stringify(response.user));
-  
+
+      console.log('Teste token: ', localStorage.getItem('token'))
+
       window.location.href = `home.html`
     }
   })
@@ -170,8 +164,6 @@ function signOut() {
 
 async function logout() {
 
-  const user = JSON.parse(localStorage.getItem('user'))
-  
   const token = localStorage.getItem('token')
 
   console.log(token)
@@ -199,8 +191,10 @@ async function logout() {
 }
 
 
+
+
 async function getCadastroProdutos() {
-  
+
   window.location.href = 'telaProdutos.html'
 }
 
@@ -243,7 +237,7 @@ async function createShowCadastroProdutosTable() {
 async function getMoreInfo(productId) {
 
   const getAllProductInfoFetchUrl = 
-    `http://localhost:3000/api/products/getAllProductInfo/${productId}`
+    `http://localhost:3000/api/products/getProductById/${productId}`
 
   const getMoreInfoResponse = await fetch(getAllProductInfoFetchUrl)
 
@@ -260,6 +254,37 @@ async function getMoreInfo(productId) {
 
 }
 
+
+// Metodo de exibição da foto de perfil
+
+async function displayUserImage(userImagePath) {
+
+  const userImage = `
+  
+    <img class="img-xs rounded-circle" src="./images/${userImagePath}" alt="Profile image"> </a>
+
+  `
+
+  const userImageHtmlArea = document.getElementById('UserDropdown')
+
+  userImageHtmlArea.innerHTML = userImage
+}
+
+async function populateNav() {
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  const userImagePath = user.userImage
+
+  await displayUserImage(userImagePath)
+}
+
+populateNav()
+
+
+
+// Metodos controle de estoque
+
 async function getTelaEstoque() {
 
   try {
@@ -272,5 +297,12 @@ async function getTelaEstoque() {
   catch(err) {
 
     const getTelaEstoqueErrorMessage = `Houve um erro ao buscar os produtos do estoque: ${err}`
+
+    window.location.href = `telaEstoque.html`
   }
+}
+
+async function getEditEstoqueProduct() {
+
+  window.location.href = `editProdutoEstoque.html`
 }

@@ -4,32 +4,55 @@ const Product = require('../models/produto')
 require('../models/produto')
 const Produto = mongoose.model('Produto')
 
-exports.getProductsByUser = async (req, res) => {
+require('../models/usuario')
+const User = mongoose.model('User')
+
+exports.getProductsByUserId = async (req, res) => {
 
   try {
 
     const userId = req.params.userId
+    
+    User.findOne({ _id: userId }).sort({order: 'desc'})
+    .then((user) => {
 
-    Produto.find({ userId: userId }).sort({ order: 'desc' }).lean()
-    .then((produtos) => {
+      if(user) {
 
-      const getSuccessMessage = 
-            `Produtos encontrados com sucesso!`
+        Produto.find({ userId: user._id }).sort({ order: 'desc' }).lean()
+        .then(async (produtos) => {
 
-      return res.status(200).json({
+              const getSuccessMessage = 
+                    `Produtos encontrados com sucesso!`
 
-        message: getSuccessMessage,
-        data: produtos
-      })
+              console.log('Teste data produto: ', produtos)
+
+              return res.status(200).json({
+        
+                message: getSuccessMessage,
+                data: produtos
+              })
+          })
+          .catch(() => {
+
+            const getErrorMessage = 
+                  `Não foram encontrados produtos cadastrados!`
+
+
+            return res.status(404).json({
+
+              message: getErrorMessage
+            })
+          })
+      }
+
     })
-    .catch(() => {
+    .catch((err) => {
 
-      const getErrorMessage = 
-            `Não foram encontrados produtos cadastrados!`
+      const errorMessage = `Usuário não encontrado! Error: ${err}`
 
       return res.status(404).json({
 
-        message: getErrorMessage
+        message: errorMessage
       })
     })
   }
@@ -42,32 +65,78 @@ exports.getProductsByUser = async (req, res) => {
   }
 }
 
+exports.getProductById = async (req, res) => {
+
+  const userId = req.body.userId
+
+  const productId = req.body.productId
+
+  console.log('Teste productId: ', productId)
+
+  User.findById({ _id: userId })
+  .then((user) => {
+    
+    if(!user) {
+      
+      const errorMessage = `Houve um erro ao buscar o usuário!`
+      
+      return res.status(404).json({
+
+        message: errorMessage
+      })
+    }
+    else {
+
+      console.log('Teste parametro: ', productId)
+    
+      Produto.findById(productId)
+      .then((produto) => {
+    
+        if(produto == null || produto == undefined) {
+          
+          const errorMessage = `O produto não existe! `
+    
+          return res.status(404).json({
+      
+            message: errorMessage
+          })
+        }
+        else if(produto.nome == null || produto.nome == undefined) {
+    
+          const errorMessage = `${errorMessage} o nome do produto é inválido!`
+    
+          return res.status(404).json({
+      
+            message: errorMessage
+          })
+        }
+        else {
+    
+          const sucessMessage = `Produto encontrado com sucesso!`
+    
+          console.log('Teste produto response: ', produto)
+    
+          return res.status(200).json({
+    
+            message: sucessMessage,
+            data: produto
+          })
+        }
+    
+      })
+    }
+})
+
+
+}
+
 exports.createProduct = async (req, res) => {
 
-  try {
+    console.log('Teste metodo')
 
-    const productData = req.body
-
-    const newProduct = new Produto({
-      nome: productData.nome,
-      descricao: productData.descricao,
-      categoria: productData.categoria,
-      precoPadrao: productData.precoPadrao,
-      precoPromo: productData.precoPromo,
-      subcategoria: productData.subcategoria,
-      fornecedor: productData.fornecedor,
-      custo: productData.custo,
-      quantidadeEmEstoque: productData.quantidadeEmEstoque,
-      quantidadeEmEstoqueMinima: productData.quantidadeEmEstoqueMinima,
-      quantidadeEmEstoqueMaxima: productData.quantidadeEmEstoqueMaxima,
-      codigoSKU: productData.codigoSKU,
-      codigoBarrasEAN: productData.codigoBarrasEAN,
-      dataValidade: productData.dataValidade,
-      imagemProduto: productData.imagemProduto,
-      userId: productData.userId
-    })
+    const product = req.body
   
-    if(productData.nome == null) {
+    if(product.nome == null) {
   
         const createProductErrorMessage = `Forneça um nome de usuário!`
   
@@ -76,7 +145,7 @@ exports.createProduct = async (req, res) => {
             message: createProductErrorMessage
         })
     }
-    else if(productData.categoria == null) {
+    else if(product.categoria == null) {
   
         const createProductErrorMessage = `Selecione um categoria`
   
@@ -84,23 +153,44 @@ exports.createProduct = async (req, res) => {
   
           message: createProductErrorMessage
         })
+      }
+      
+    if(product.categoria == null || product.categoria == undefined) {
+
+
+      return res.status(400).json({
+
+        message: `Selecione uma categoria!`
+      })
     }
-  
-    const savedProduct = await newProduct.save()
+
+    const newProductData = new Produto({
+
+      nome: product.nome,
+      descricao: product.descricao,
+      categoria: "teste",
+      precoPadrao: product.precoPadrao,
+      precoPromo: product.precoPromo,
+      subcategoria: product.subcategoria,
+      fornecedor: product.fornecedor,
+      quantidadeEmEstoque: product.quantidadeEmEstoque,
+      quantidadeEmEstoqueMinima: product.quantidadeEmEstoqueMinima,
+      quantidadeEmEstoqueMaxima: product.quantidadeEmEstoqueMaxima,
+      codigoBarrasEAN: product.codigoBarrasEAN,
+      dataValidade: product.dataValidade,
+      imagemProduto: product.imagemProduto,
+      userId: product.userId
+    })
+
+
+    const savedProduct = await newProductData.save()
   
     return res.status(200).json({
   
         message: 'Produto cadastrado com sucesso!',
         data: savedProduct
     })
-  }
-  catch(err) {
-
-    return res.status(500).json({
-
-      message: `Houver um erro ao criar o produto: ${err}`
-    })
-  }
+ 
 }
 
 exports.updateProduct = async (req, res) => {

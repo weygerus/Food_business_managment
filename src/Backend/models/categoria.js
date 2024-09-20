@@ -7,9 +7,7 @@ const categoriaSchema = new mongoose.Schema({
 
   descricao: { type: String, required: true },
 
-  dataCadastro: { type: Date, default: Date.now },
-  
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }
+  dataCadastro: { type: Date, default: Date.now }
 })
 
 module.exports = mongoose.model('Categoria', categoriaSchema)

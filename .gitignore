@@ -1,2 +1,5 @@
 # Dependencias e assets do frontend
 src/Frontend/assets
+
+# Dependencias do servidor
+src/Backend/node_modules

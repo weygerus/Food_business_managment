@@ -267,7 +267,11 @@ async function displayUserImage(userImagePath) {
 
   const userImageHtmlArea = document.getElementById('UserDropdown')
 
+  const dropDownUserImageArea = document.getElementById('dropdownUserArea')
+
   userImageHtmlArea.innerHTML = userImage
+
+  dropDownUserImageArea.innerHTML = userImage
 }
 
 async function populateNav() {

@@ -121,8 +121,12 @@
                                 <div class="form-group">
 
                                     <label for="nome">Nome:</label>
-                                    <input type="text" class="form-control custom-form-control custom-form-control custom-form-control" autocomplete="on" id="descricao"
-                                        name="newProductPostData[nome]" autocomplete="nome" required>
+                                    <input type="text" 
+                                           class="form-control custom-form-control custom-form-control custom-form-control"
+                                           id="nome"
+                                           name="newProductPostData[nome]" 
+                                           autocomplete="nome" 
+                                           required>
                                 </div>
                             </div>
 
@@ -131,8 +135,12 @@
                                 <div class="form-group">
 
                                     <label for="precoPadrao">Preço Padrão:</label>
-                                    <input type="number" class="form-control custom-form-control custom-form-control custom-form-control" autocomplete="on" id="precoPadrao"
-                                        name="newProductPostData[precoPadrao]" autocomplete="precoPadrao" required>
+                                    <input type="number" 
+                                           class="form-control custom-form-control custom-form-control custom-form-control"  
+                                           id="precoPadrao"
+                                           name="newProductPostData[precoPadrao]" 
+                                           autocomplete="precoPadrao" 
+                                           required>
                                 </div>
 
                             </div>
@@ -185,7 +193,7 @@
                                     <div class="input-group input-group-custom">
                                         
                                         <input class="form-control custom-form-control"
-                                        id="exampleTextarea1" 
+                                        id="descricao" 
                                         autocomplete="on"
                                                   rows="1"
                                                   >
@@ -269,20 +277,7 @@
                                 </div>
                             </div>
                             
-                            
-                            <div class="col-md-3">
                                 
-                                <div class="form-group">
-                                    
-                                    <label for="codigoBarrasEAN">Código de Barras EAN:</label>
-                                    <input type="text" class="form-control custom-form-control" autocomplete="on" id="codigoBarrasEAN" autocomplete="codigoBarrasEAN-level"
-                                    name="newProductPostData[codigoBarrasEAN]" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-between">
-    
                             <div class="col-md-3">
                                 
                                 <div class="form-group">
@@ -290,6 +285,35 @@
                                     <label for="dataValidade">Data de Validade:</label>
                                     <input type="date" class="form-control custom-form-control" id="dataValidade" autocomplete="dataValidade-level"
                                     name="newProductPostData[dataValidade]" required>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="codigoBarrasEAN">Código SKU:</label>
+                                    <input type="text" 
+                                    id="codigoSKU" 
+                                    class="form-control custom-form-control" 
+                                    autocomplete="on" 
+                                    autocomplete="codigoBarrasEAN-level"
+                                    name="newProductPostData[codigoBarrasEAN]" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    
+                                    <label for="codigoBarrasEAN">Código de Barras EAN:</label>
+                                    <input type="text" class="form-control custom-form-control" autocomplete="on" id="codigoBarrasEAN" autocomplete="codigoBarrasEAN-level"
+                                    name="newProductPostData[codigoBarrasEAN]" required>
                                 </div>
                             </div>
 
@@ -310,6 +334,9 @@
                         </style>
                     </form>
                 
+
+
+
                 </div>
             </div>
         </div>

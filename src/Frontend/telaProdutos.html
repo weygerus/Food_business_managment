@@ -25,13 +25,171 @@
 
 </head>
 <body>
+
+    <style>
+        
+        .content-wrapper {
+
+            margin: 0;
+            padding-left: 10px;
+            padding-bottom: 35px;
+            
+            padding-top: 0;
+        }
+
+        .cadastroProdutosTitle {
+
+            font-size: 25px;
+            padding-top: 20px;
+        }
+        
+        .custom-container {
+            
+            margin: 0;
+            padding: 0;
+
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .custom-card {
+
+            background-color: #9CAF88;
+            border: 3px solid green;
+            border-radius: 0px;
+
+            width: 340px;
+            margin: 0 0;
+            
+            text-align: center;
+
+            color: #fff;
+        }
+
+        .custom-card-text {
+
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .custom-novo-produto-btn {
+
+            width: 150px;
+            height: 40px;
+            margin-bottom: 25px;
+
+            border: 1px solid #191919;
+            cursor: pointer;
+            outline: none;
+
+            transition: 0.3s ease-in-out;
+
+            font-size: 16px;
+            font-weight: 500;
+            color: #191919;
+        }
+
+        .custom-novo-produto-btn:hover {
+
+            background-color: #191919;
+            transition: 0.3s ease-in-out;
+
+            color: #fff;
+        }
+
+        /* Container dos botões da lista */
+        
+        .btnsContainerTd {
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            
+            gap: 10px;
+        }
+
+        /* Estilos dos botões da lista */
+
+        .cadastroProdutosMoreInfoBtn {
+
+            background-color: transparent;
+            border: 1px solid #191919;
+            color: #191919;
+
+            transition: 0.3s ease-in-out;
+
+            font-size: 14px;
+            padding: 6px;
+        }
+
+        .cadastroProdutosMoreInfoBtn:hover {
+
+            background-color: #191919;
+            color: #fff;
+        }
+
+
+
+        /* Estilos dos botões de edição */
+
+
+        .editProductBtn {
+
+            height: 30px;
+            width: 40px;
+
+            border: 1px solid #191919;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .editIcon {
+
+            transform: scale(0.5);
+        }
+
+        
+        /* Estilos dos botões de delete */
+
+        .deleteProductBtn {
+
+            height: 30px;
+            width: 40px;
+
+            border: 1px solid #191919;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .deleteIcon {
+
+            transform: scale(0.5);
+        }
+
+    </style>
+
+
+
+    <div class="content-wrapper">
     
-    <h4 class="cadastroProdutosTitle">Cadastro de produtos</h4>
+        <h4 class="cadastroProdutosTitle" id="cadastroProdutosTitle">Cadastro de produtos</h4>
 
-        <div class="cadastroProdutosBtnConatiner">
+        <div class="container custom-container" id="successMessageCardContainer">
 
-            <button class="btn-{#ccc}"
-                    onclick="getNovoProdutoForm()">Novo produto</button>
+
+        </div>
+
+        <div class="cadastroProdutosBtnContainer">
+    
+            <button class="btn-{#ccc} custom-novo-produto-btn"
+                    onclick="getNovoProdutoForm()">
+            
+                Novo produto
+            </button>
         </div>
 
         <div class="table-responsive">
@@ -63,6 +221,7 @@
 
             </table>
         </div>
+    </div>
 
             
     <!-- container-scroller -->

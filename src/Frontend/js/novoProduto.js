@@ -92,10 +92,7 @@ async function setNovoProduto() {
 
     const UserObject = JSON.parse(localStorage.getItem('user'))
 
-    console.log('Teste, linha 95: ', UserObject)
-    
     const UserId = UserObject._id
-    /* Propriedades */
     
     const novoProdutoPostFetchUrl = 
     `http://localhost:3000/api/products/createProduct`
@@ -116,7 +113,6 @@ async function setNovoProduto() {
       codigoBarrasEAN: CodigoBarrasEAN,
       dataValidade: DataValidade,
       imagemProduto: ImagemProduto,
-      dataCadastro: Date.now,
       userId: UserId
     }
 
@@ -133,11 +129,13 @@ async function setNovoProduto() {
 
     console.log('Teste response: ', fetchResponse)
 
-    if(!fetchResponse.ok || fetchResponse.data == undefined) {
+    if(!fetchResponse.ok) {
 
       const errorMessage = fetchResponse.message
 
-      //window.location.href = `novoProduto.html?message=${errorMessage}`
+      console.log('Erro: ', fetchResponse.message)
+
+      window.location.href = `novoProduto.html?message=${errorMessage}`
     }
     else {
 
@@ -145,11 +143,52 @@ async function setNovoProduto() {
 
       const user = JSON.parse(localStorage.getItem('user'))
 
-      console.log('Teste user:', user)
+      console.log('Objeto response: ', novoProdutoResponseObject)
 
-      console.log('Teste objeto da response: ', novoProdutoResponseObject)
+      const message = encodeURIComponent(novoProdutoResponseObject.message)
+
+      window.location.href = `telaProdutos.html?message=${message}`
     }
 }
+
+async function fillNovoProdutoForm() {
+
+  window.onload = function() {
+
+    const usuario = {
+      nome: "Produto Exemplo",
+      descricao: "Descrição do produto exemplo.",
+      categoria: "Eletrônicos",
+      precoPadrao: "199.99",
+      precoPromo: "149.99",
+      subcategoria: "Smartphones",
+      fornecedor: "Fornecedor Exemplo",
+      quantidadeEmEstoque: "50",
+      quantidadeEmEstoqueMinima: "5",
+      quantidadeEmEstoqueMaxima: "100",
+      codigoBarrasEAN: "1234567890123",
+      codigoBarrasSKU: "SKU12345",
+      dataValidade: "2024-12-31",
+      imagemProduto: "uploads/produto_exemplo.jpg"
+    };
+
+    document.getElementById('nome').value = produto.nome;
+    document.getElementById('descricao').value = produto.descricao;
+    document.getElementById('categoria').value = produto.categoria;
+    document.getElementById('precoPadrao').value = produto.precoPadrao;
+    document.getElementById('precoPromo').value = produto.precoPromo;
+    document.getElementById('subcategoria').value = produto.subcategoria;
+    document.getElementById('fornecedor').value = produto.fornecedor;
+    document.getElementById('quantidadeEmEstoque').value = produto.quantidadeEmEstoque;
+    document.getElementById('quantidadeEmEstoqueMinima').value = produto.quantidadeEmEstoqueMinima;
+    document.getElementById('quantidadeEmEstoqueMaxima').value = produto.quantidadeEmEstoqueMaxima;
+    document.getElementById('codigoBarrasEAN').value = produto.codigoBarrasEAN;
+    document.getElementById('codigoBarrasSKU').value = produto.codigoBarrasSKU;
+    document.getElementById('dataValidade').value = produto.dataValidade;
+    document.getElementById('imagemProduto').value = produto.imagemProduto;
+  }
+}
+
 
   displayNovoProdutoForm()
   

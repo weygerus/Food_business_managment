@@ -5,6 +5,55 @@ async function getProductIdParam() {
   return urlParams.get('productId')
 }
 
+async function getMessageParam() {
+
+  const queryString = window.location.search
+  const urlParams = new URLSearchParams(queryString)
+  return urlParams.get('message')
+}
+
+async function displaySuccessProductCreationCard() {
+
+  const messageParam = await getMessageParam()
+
+  const successProductCreateCard = document.getElementById('successMessageCardContainer')
+
+  const pageTitle = document.getElementById('cadastroProdutosTitle')
+  
+  if(!messageParam) {
+
+    successProductCreateCard.style.display = 'none'
+    
+    pageTitle.style.marginBottom = '25px'
+  }
+  else {
+    
+    console.log('Message: ', messageParam)
+    
+    successProductCreateCard.style.display = 'block'
+
+    pageTitle.style.marginBottom = '0px'
+
+    const successProductCreateHtmlCard = `
+    
+        <div class="card custom-card">
+
+            <div class="card-body">
+
+                <p class="card-text custom-card-text">${messageParam}</p>
+
+            </div>
+        </div>
+     
+        
+    `
+        
+    const successMessageCardContainer = document.getElementById('successMessageCardContainer')
+    
+    successMessageCardContainer.innerHTML = successProductCreateHtmlCard
+  }
+}
+
 async function getEditProductInfo(productData) {
 
   const editProdutoDetalheContainerEan = document.getElementById('productCodigoEAN')
@@ -67,10 +116,21 @@ async function populateTable() {
                     onclick="getMoreInfo('${produto._id}')">
                 Detalhes
             </button>
+
+            <button class="editProductBtn">
+
+                <img src="./images/edit.svg" class="editIcon" alt="edit-icon">
+            </button>
+
+            <button class="deleteProductBtn">
+
+                <img src="./images/delete.svg" class="deleteIcon" alt="edit-icon">
+            </button>
           `
           
         
           const detailBtnContainer = document.createElement('td')
+          detailBtnContainer.className = 'btnsContainerTd'
           detailBtnContainer.innerHTML = detailBtnHTML
           tr.appendChild(detailBtnContainer)
 
@@ -100,6 +160,8 @@ async function getNovoProdutoForm() {
 }
 
 populateTable()
+
+displaySuccessProductCreationCard()
 
 
 
